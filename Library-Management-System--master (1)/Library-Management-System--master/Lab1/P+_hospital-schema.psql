@@ -1,0 +1,49 @@
+/*
+P+_hospital-schema.psql
+By: Petrus Matiros & Tomas Weldetinsae
+Modified: 2021-10-07
+*/
+
+CREATE TABLE Department (
+  "Department name" varchar,
+  "BuildingNr" int,
+  PRIMARY KEY ("Department name")
+);
+
+CREATE TABLE Employee (
+  "ID" int,
+  "Name" varchar NOT NULL,
+  "PhoneNr" int NOT NULL,
+  "Start date" date,
+  "MentorID" varchar NOT NULL,
+  "Department name" varchar,
+  PRIMARY KEY ("ID"),
+  FOREIGN KEY ("Department name") REFERENCES Department
+);
+
+CREATE TABLE Nurse (
+  "ID" int,
+  "Degree" varchar,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE Doctor (
+  "ID" int,
+  "Specialization" varchar,
+  "RoomNr" int,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE Patient (
+  "ID" int,
+  "Name" varchar NOT NULL,
+  "Age" int NOT NULL,
+  "Diagnosises" varchar,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE Treating (
+  "DoctorID" int,
+  "PatientID" int,
+  PRIMARY KEY ("DoctorID", "PatientID")
+);

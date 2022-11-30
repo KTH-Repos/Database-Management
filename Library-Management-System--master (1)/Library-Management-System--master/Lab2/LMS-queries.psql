@@ -1,0 +1,171 @@
+--Find a book and display only its title and author
+
+SELECT title, author_firstname || ' ' || author_lastname AS author
+FROM Book, Book_author
+WHERE Book.bookID = Book_author.bookID;
+
+--SELECT title, author_firstname || ' ' || author_lastname AS author FROM Book, Book_author WHERE Book.bookID = Book_author.bookID;
+
+
+--Display all books published after a specific date and order by published date. 
+
+SELECT title, date_of_publication 
+FROM Book, Book_copy 
+WHERE Book.bookID=Book_copy.bookID 
+AND date_of_publication >= '2017-01-01'
+ORDER BY date_of_publication;
+
+--query to be submitted into terminal--
+
+SELECT title, date_of_publication FROM Book, Book_copy WHERE Book.bookID=Book_copy.bookID AND date_of_publication >= '2017-01-01'ORDER BY date_of_publication;
+
+--Count all the books currently borrowed
+SELECT COUNT(copyID) 
+FROM Loan_entry
+WHERE is_returned = 'f';
+
+--Calculate and display the sum of all paid fines
+SELECT SUM(fine_amount) 
+FROM Fine_info, Transaction_info 
+WHERE Transaction_info.fineID = Fine_info.fineID;
+
+--SELECT SUM(fine_amount) FROM Fine_info, Transaction_info WHERE Transaction_info.fineID = Fine_info.fineID;
+
+--Find all the books from one genre and display only its title, author, genre and a relevant column of yoiur choice
+SELECT title, author_firstname || ' ' || author_lastname AS author, genre, publisher 
+FROM Book, Book_author, Book_genre, Book_copy 
+WHERE ((Book.bookID = Book_author.bookID AND Book.bookID = Book_genre.bookID) 
+AND (genre = 'Fantasy')) AND Book.bookID = Book_copy.bookID;
+
+SELECT title, author_firstname || ' ' || author_lastname AS author, genre, publisher FROM Book, Book_author, Book_genre, Book_copy WHERE ((Book.bookID = Book_author.bookID AND Book.bookID = Book_genre.bookID) AND (genre = 'Fantasy')) AND Book.bookID = Book_copy.bookID;
+
+--Find all unpaid fines and display the late book, the fine amount, the fine owner and a relevant column of your choice
+
+SELECT title, fine_amount, first_name || ' ' || last_name as name, expire_date 
+FROM (SELECT * FROM Member RIGHT JOIN (SELECT * FROM Student_account RIGHT JOIN 
+(SELECT * FROM Book RIGHT JOIN (SELECT * FROM Book_copy RIGHT JOIN (SELECT * FROM Loan_entry RIGHT JOIN 
+(SELECT * FROM Fine_info LEFT JOIN Transaction_info ON Fine_info.fineID = Transaction_info.fineID WHERE Transaction_info.fineID IS NULL) 
+AS onlyFine ON Loan_entry.loanID = onlyFine.loanID) AS loan ON Book_copy.copyID = loan.copyID) AS copy ON Book.bookID = copy.bookID) AS bookInfo 
+ON Student_account.student_accountID = bookInfo.student_accountID) AS accountInfo ON Member.kthID = accountInfo.kthID) AS info WHERE info.title IS NOT NULL;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+--Recursive versions of the above queries/P++
+
+--Find a book and display only its title and author
+WITH CTE_bookauthors AS (
+    SELECT bookID, author_firstname || ' ' || author_lastname AS author
+    FROM book_author,book
+)
+SELECT book.title, CTE_bookauthors.author
+FROM CTE_bookauthors JOIN book ON CTE_bookauthors.bookID=book.bookID;
+
+--query to be submitted into terminal--
+
+WITH CTE_bookauthors AS (SELECT title, author_firstname || ' ' || author_lastname AS author FROM book_author,book WHERE book.bookID=book_author.bookID) SELECT*FROM CTE_bookauthors;
+
+--Display all books published after a specific date and order by published date. 
+
+WITH CTE_publishdate AS (
+    SELECT bookID,date_of_publication
+    FROM book_copy
+    WHERE date_of_publication>='2017-01-01'
+)
+SELECT book.title, CTE_publishdate.date_of_publication
+FROM CTE_publishdate JOIN book ON book.bookID=CTE_publishdate.bookID;
+
+--query to be submitted into terminal--
+
+WITH CTE_publishdate AS (SELECT bookID,date_of_publication FROM book_copy WHERE date_of_publication>='2017-01-01') SELECT book.title, CTE_publishdate.date_of_publication FROM CTE_publishdate JOIN book ON book.bookID=CTE_publishdate.bookID ORDER BY CTE_publishdate.date_of_publication;
+
+
+--Count all the books currently borrowed
+WITH CTE_notreturned AS (
+    SELECT copyID, is_returned
+    FROM Loan_entry
+    WHERE is_returned = 'f'
+)
+SELECT COUNT(CTE_notreturned.copyID)
+FROM CTE_notreturned;
+
+--query to be submitted into terminal--
+
+WITH CTE_notreturned AS ( SELECT copyID, is_returned FROM Loan_entry WHERE is_returned = 'f') SELECT COUNT(CTE_notreturned.copyID) FROM CTE_notreturned;
+
+
+--Calculate and display the sum of all paid fines
+WITH CTE_paidfines AS (
+    SELECT fine_info.fineID, fine_amount
+    FROM fine_info, Transaction_info
+    WHERE fine_info.fineID=transaction_info.fineID
+)
+SELECT SUM(CTE_paidfines.fine_amount)
+FROM CTE_paidfines;
+
+--query to be submitted into terminal--
+
+WITH CTE_paidfines AS (SELECT fine_info.fineID, fine_amount FROM fine_info, Transaction_info WHERE fine_info.fineID=transaction_info.fineID) SELECT SUM(CTE_paidfines.fine_amount)FROM CTE_paidfines;
+
+--Find all the books from one genre and display only its title, author, genre and a relevant column of your choice
+
+WITH CTE_bookauthors AS (
+    SELECT title, book.bookID, author_firstname || ' ' || author_lastname AS author
+    FROM book_author,book
+    WHERE book.bookID=book_author.bookID
+), CTE_bookgenres AS (
+    SELECT CTE_bookauthors.title, CTE_bookauthors.author, book_genre.genre, CTE_bookauthors.bookID
+    FROM CTE_bookauthors JOIN book_genre ON CTE_bookauthors.bookID=book_genre.bookID
+    WHERE book_genre.genre='Fantasy'
+)
+SELECT CTE_bookgenres.title, CTE_bookgenres.author,CTE_bookgenres.genre, book_copy.publisher
+FROM CTE_bookgenres JOIN book_copy ON CTE_bookgenres.bookID=book_copy.bookID;
+
+--WITH CTE_bookauthors AS (SELECT title, book.bookID, author_firstname || ' ' || author_lastname AS author FROM book_author,book WHERE book.bookID=book_author.bookID)SELECT CTE_bookauthors.title, CTE_bookauthors.author, book_genre.genre, CTE_bookauthors.bookID FROM CTE_bookauthors JOIN book_genre ON CTE_bookauthors.bookID=book_genre.bookID WHERE book_genre.genre='Fantasy';
+
+--query to be submitted into terminal--
+WITH CTE_bookauthors AS (SELECT title, book.bookID, author_firstname || ' ' || author_lastname AS author FROM book_author,book WHERE book.bookID=book_author.bookID), CTE_bookgenres AS (SELECT CTE_bookauthors.title, CTE_bookauthors.author, book_genre.genre, CTE_bookauthors.bookID FROM CTE_bookauthors JOIN book_genre ON CTE_bookauthors.bookID=book_genre.bookID WHERE book_genre.genre='Fantasy')SELECT CTE_bookgenres.title, CTE_bookgenres.author,CTE_bookgenres.genre, book_copy.publisher FROM CTE_bookgenres JOIN book_copy ON CTE_bookgenres.bookID=book_copy.bookID;
+
+
+-- Find all unpaid fines and display the late book, the fine amount, the fine owner and a relevant column of your choice.
+
+SELECT title, fine_amount, first_name || ' ' || last_name as name, expire_date FROM (SELECT * FROM Member RIGHT JOIN (SELECT * FROM Student_account RIGHT JOIN (SELECT * FROM Book RIGHT JOIN (SELECT * FROM Book_copy RIGHT JOIN (SELECT * FROM Loan_entry RIGHT JOIN (SELECT * FROM Fine_info LEFT JOIN Transaction_info ON Fine_info.fineID = Transaction_info.fineID WHERE Transaction_info.fineID IS NULL) AS onlyFine ON Loan_entry.loanID = onlyFine.loanID) AS loan ON Book_copy.copyID = loan.copyID) AS copy ON Book.bookID = copy.bookID) AS bookInfo ON Student_account.student_accountID = bookInfo.student_accountID) AS accountInfo ON Member.kthID = accountInfo.kthID) AS info WHERE info.title IS NOT NULL;
+
+
+
+--Find all unpaid fines and display the late book, the fine amount, the fine owner and a relevant column of your choice
+
+WITH CTE_onlyfine AS (
+    SELECT Fine_info.fineID, Fine_info.loanID, Fine_info.fine_amount 
+    FROM Fine_info LEFT JOIN Transaction_info ON Fine_info.fineID = Transaction_info.fineID
+    WHERE Transaction_info.fineID IS NULL
+), CTE_unpaidloan AS (
+    SELECT Loan_entry.copyID, Loan_entry.student_accountID, Loan_entry.expire_date, CTE_onlyfine.fine_amount
+    FROM Loan_entry RIGHT JOIN CTE_onlyfine ON Loan_entry.loanID = CTE_onlyfine.loanID
+), CTE_unpaidloaninfo AS (
+    SELECT Book_copy.bookID, CTE_unpaidloan.student_accountID, CTE_unpaidloan.expire_date, CTE_unpaidloan.fine_amount
+    FROM Book_copy RIGHT JOIN CTE_unpaidloan ON Book_copy.copyID = CTE_unpaidloan.copyID
+), CTE_unpaidloanbook AS (
+    SELECT Book.title, CTE_unpaidloaninfo.student_accountID, CTE_unpaidloaninfo.expire_date, CTE_unpaidloaninfo.fine_amount
+    FROM Book RIGHT JOIN CTE_unpaidloaninfo ON Book.bookID = CTE_unpaidloaninfo.bookID
+), CTE_unpaidloanaccount AS (
+    SELECT Student_account.kthID, CTE_unpaidloanbook.title, CTE_unpaidloanbook.expire_date, CTE_unpaidloanbook.fine_amount
+    FROM Student_account RIGHT JOIN CTE_unpaidloanbook ON Student_account.student_accountID = CTE_unpaidloanbook.student_accountID
+)
+    SELECT CTE_unpaidloanaccount.title, CTE_unpaidloanaccount.fine_amount, Member.first_name || ' ' || Member.last_name as name, CTE_unpaidloanaccount.expire_date
+    FROM Member RIGHT JOIN CTE_unpaidloanaccount ON Member.kthID = CTE_unpaidloanaccount.kthID;
+
+---------------------------------------------------------------------------------------------------------------------
+
+-- Using the recursive method, sum all odd numbers between 1 and 50.
+
+-- n = 1
+-- 1 + 2 + ... + 49 = 625
+-- n % 2 != 0 (sum all numbers where the remainder is not 0, odd numbers)
+
+WITH RECURSIVE t(n) AS (
+    VALUES (1)
+    UNION ALL
+    SELECT (n+1) FROM t WHERE n < 50
+)
+SELECT sum(n) FROM t WHERE (n%2 != 0);

@@ -1,0 +1,238 @@
+/*
+LMS-inputs.psql
+By: Petrus Matiros & Tomas Weldetinsae
+Modified: 2021-10-07
+*/
+
+-- INSERT at least 10 books
+INSERT INTO Book VALUES ('nzWKLQ*i@3', 'Cybertopia: Pulse Reactor', 5, '978-5-1757-2807-2');
+INSERT INTO Book VALUES ('YWBaTfxjac', 'Cybertopia: Warpdrive', 5, '978-8-6275-7860-7');
+INSERT INTO Book VALUES ('EN82bRWkp2', 'Cybertopia: New Beginnings', 5, '978-1-7288-7443-2');
+
+INSERT INTO Book VALUES ('tEcJ8bvYxc', 'Revenge Of The Ocean', 1, '978-8-7815-6087-6');
+INSERT INTO Book VALUES ('su=N~TMkDA', 'Abandoned By Eternity', 1, '978-0-3363-0677-9');
+INSERT INTO Book VALUES ('/Ggif2thXK', 'Listening To The Mist', 1, '978-0-0115-8007-4');
+
+INSERT INTO Book VALUES ('Qc82dig7wE', 'Deceiving The North', 1, '978-2-7586-0068-8');
+INSERT INTO Book VALUES ('3uw`4e+K^y', 'Pirates And Spies', 1, '978-1-8818-7510-9');
+INSERT INTO Book VALUES ('g^Y/`tEepo', 'Vicious feelings in bright shadows', 1, '978-5-7269-1411-4');
+INSERT INTO Book VALUES ('/YTvp#f#mX', 'Endora: Return of the truth', 1, '978-0-5885-1548-6');
+
+-- INSERT 7 audio book versions of current books in the database
+-- atleast 5 audiobooks
+INSERT INTO Audio_Book VALUES ('rBt3F/^^u&', 'tEcJ8bvYxc', 'Revenge Of The Ocean', '11:05:15', 'MP3', 309, '64 kbps', 'Pax', 'Logario');
+INSERT INTO Audio_Book VALUES ('C&kEn+PLNo', 'su=N~TMkDA', 'Abandoned By Eternity', '10:49:38', 'AAC', 293, '32 kbps', 'Alexandra', 'Brahms');
+INSERT INTO Audio_Book VALUES ('B#-m$-6@UV', '/Ggif2thXK', 'Listening To The Mist', '11:12:02', 'MP3', 311, '64 kbps', 'Seema', 'Zyma');
+
+INSERT INTO Audio_Book VALUES ('%Js7ihXcuC', 'Qc82dig7wE', 'Deceiving The North', '09:55:33', 'MP3', 267, '64 kbps', 'Liss', 'Porirsson');
+INSERT INTO Audio_Book VALUES ('5GJ4~@Vi~+', '3uw`4e+K^y', 'Pirates And Spies', '09:48:22', 'WAV', 265, '96 kbps', 'Agnia', 'Galli');
+INSERT INTO Audio_Book VALUES ('T79o~*Hanh', 'g^Y/`tEepo', 'Vicious feelings in bright shadows', '12:00:17', 'MP3', 336, '64 kbps', 'Amanda', 'Toussaint');
+INSERT INTO Audio_Book VALUES ('-^im^vzEiY', '/YTvp#f#mX', 'Endora: Return of the truth', '08:33:56', 'MP3', 233, '64 kbps', 'David', 'Fischer');
+
+-- INSERT 5 copies of the Cypertopia trilogy and 1 copy of the other books
+INSERT INTO Book_copy VALUES ('N6uUWNEEx9', 'nzWKLQ*i@3', 'available', 'new');
+INSERT INTO Book_copy VALUES ('2MEsfXEm=x', 'nzWKLQ*i@3', 'available', 'new');
+INSERT INTO Book_copy VALUES ('z$CaGrswjA', 'nzWKLQ*i@3', 'available', 'new');
+INSERT INTO Book_copy VALUES ('PE_kXVwi@g', 'nzWKLQ*i@3', 'available', 'new');
+INSERT INTO Book_copy VALUES ('PZTHeC$2fr', 'nzWKLQ*i@3', 'available', 'new');
+
+INSERT INTO Book_copy VALUES ('U@%Xcu+SaP', 'YWBaTfxjac', 'borrowed', 'new');
+INSERT INTO Book_copy VALUES ('=4-U~_R9jN', 'YWBaTfxjac', 'available', 'new');
+INSERT INTO Book_copy VALUES ('mySitpmQCm', 'YWBaTfxjac', 'available', 'new');
+INSERT INTO Book_copy VALUES ('fK@5rVR$ax', 'YWBaTfxjac', 'available', 'new');
+INSERT INTO Book_copy VALUES ('e_dCi26_@9', 'YWBaTfxjac', 'available', 'new');
+
+INSERT INTO Book_copy VALUES ('VUgJtCyT*-', 'EN82bRWkp2', 'borrowed', 'new');
+INSERT INTO Book_copy VALUES ('MQdoF=UAvk', 'EN82bRWkp2', 'borrowed', 'new');
+INSERT INTO Book_copy VALUES ('Wg&%PhzpvZ', 'EN82bRWkp2', 'borrowed', 'new');
+INSERT INTO Book_copy VALUES ('k9w~v+RUPv', 'EN82bRWkp2', 'borrowed', 'new');
+INSERT INTO Book_copy VALUES ('eEN*JwAaSu', 'EN82bRWkp2', 'available', 'new');
+
+INSERT INTO Book_copy VALUES ('pYGcoFsok7', 'tEcJ8bvYxc', 'available', 'new');
+INSERT INTO Book_copy VALUES ('^EJbZpZK_V', 'su=N~TMkDA', 'available', 'new');
+INSERT INTO Book_copy VALUES ('wAAngcTi6M', '/Ggif2thXK', 'available', 'new');
+
+INSERT INTO Book_copy VALUES ('vd6cvK3^tn', 'Qc82dig7wE', 'available', 'new');
+INSERT INTO Book_copy VALUES ('Rgh`vD49a-', '3uw`4e+K^y', 'available', 'new');
+INSERT INTO Book_copy VALUES ('QJ8rjS+&D&', 'g^Y/`tEepo', 'available', 'new');
+INSERT INTO Book_copy VALUES ('n#^xHxtQ#s', '/YTvp#f#mX', 'available', 'new');
+
+-- INSERT the author for all the books
+INSERT INTO Book_author VALUES ('nzWKLQ*i@3', 'Natalia', 'Page');
+INSERT INTO Book_author VALUES ('YWBaTfxjac', 'Natalia', 'Page');
+INSERT INTO Book_author VALUES ('EN82bRWkp2', 'Natalia', 'Page');
+
+INSERT INTO Book_author VALUES ('tEcJ8bvYxc', 'Kristin', 'Conner');
+INSERT INTO Book_author VALUES ('su=N~TMkDA', 'Ricky', 'Bennett');
+INSERT INTO Book_author VALUES ('/Ggif2thXK', 'Orlando', 'Wood');
+
+INSERT INTO Book_author VALUES ('Qc82dig7wE', 'Misty', 'Alfors');
+INSERT INTO Book_author VALUES ('3uw`4e+K^y', 'Teresa', 'Bergdahl');
+INSERT INTO Book_author VALUES ('g^Y/`tEepo', 'Masayoshi', 'Sakkutora');
+INSERT INTO Book_author VALUES ('/YTvp#f#mX', 'Louise', 'Blanchet');
+
+-- INSERT the genre for all the books
+INSERT INTO Book_genre VALUES ('nzWKLQ*i@3', 'Science fiction');
+INSERT INTO Book_genre VALUES ('YWBaTfxjac', 'Science fiction');
+INSERT INTO Book_genre VALUES ('EN82bRWkp2', 'Science fiction');
+
+INSERT INTO Book_genre VALUES ('tEcJ8bvYxc', 'Fantasy');
+INSERT INTO Book_genre VALUES ('su=N~TMkDA', 'Fantasy');
+INSERT INTO Book_genre VALUES ('/Ggif2thXK', 'Fantasy');
+
+INSERT INTO Book_genre VALUES ('Qc82dig7wE', 'Fantasy');
+INSERT INTO Book_genre VALUES ('3uw`4e+K^y', 'Fantasy');
+INSERT INTO Book_genre VALUES ('g^Y/`tEepo', 'Fantasy');
+INSERT INTO Book_genre VALUES ('/YTvp#f#mX', 'Fantasy');
+
+-- INSERT the publisher for all the books
+INSERT INTO Book_publisher VALUES ('nzWKLQ*i@3', 'Bibliolandia AB');
+INSERT INTO Book_publisher VALUES ('YWBaTfxjac', 'Bibliolandia AB');
+INSERT INTO Book_publisher VALUES ('EN82bRWkp2', 'Bibliolandia AB');
+
+INSERT INTO Book_publisher VALUES ('tEcJ8bvYxc', 'Bertelsmann');
+INSERT INTO Book_publisher VALUES ('su=N~TMkDA', 'HarperCollins');
+INSERT INTO Book_publisher VALUES ('/Ggif2thXK', 'Thomson Reuters');
+
+INSERT INTO Book_publisher VALUES ('Qc82dig7wE', 'Luna Press');
+INSERT INTO Book_publisher VALUES ('3uw`4e+K^y', 'Fireside Fiction Company');
+INSERT INTO Book_publisher VALUES ('g^Y/`tEepo', 'Falstaff Books');
+INSERT INTO Book_publisher VALUES ('/YTvp#f#mX', 'Rosarium Publishing');
+
+-- INSERT the edition for all the books
+INSERT INTO Book_edition VALUES ('nzWKLQ*i@3', '1st edition');
+INSERT INTO Book_edition VALUES ('YWBaTfxjac', '1st edition');
+INSERT INTO Book_edition VALUES ('EN82bRWkp2', '1st edition');
+
+INSERT INTO Book_edition VALUES ('tEcJ8bvYxc', '1st edition');
+INSERT INTO Book_edition VALUES ('su=N~TMkDA', '1st edition');
+INSERT INTO Book_edition VALUES ('/Ggif2thXK', '1st edition');
+
+INSERT INTO Book_edition VALUES ('Qc82dig7wE', '1st edition');
+INSERT INTO Book_edition VALUES ('3uw`4e+K^y', '1st edition');
+INSERT INTO Book_edition VALUES ('g^Y/`tEepo', '1st edition');
+INSERT INTO Book_edition VALUES ('/YTvp#f#mX', '1st edition');
+
+-- INSERT the language for all the books
+INSERT INTO Book_lang VALUES ('nzWKLQ*i@3', 'English');
+INSERT INTO Book_lang VALUES ('YWBaTfxjac', 'English');
+INSERT INTO Book_lang VALUES ('EN82bRWkp2', 'English');
+
+INSERT INTO Book_lang VALUES ('tEcJ8bvYxc', 'English');
+INSERT INTO Book_lang VALUES ('su=N~TMkDA', 'English');
+INSERT INTO Book_lang VALUES ('/Ggif2thXK', 'English');
+
+INSERT INTO Book_lang VALUES ('Qc82dig7wE', 'English');
+INSERT INTO Book_lang VALUES ('3uw`4e+K^y', 'English');
+INSERT INTO Book_lang VALUES ('g^Y/`tEepo', 'English');
+INSERT INTO Book_lang VALUES ('/YTvp#f#mX', 'English');
+
+-- INSERT the info about prequels and sequels for all the books
+INSERT INTO PreSeq VALUES ('nzWKLQ*i@3', NULL, 'YWBaTfxjac');
+INSERT INTO PreSeq VALUES ('YWBaTfxjac', 'nzWKLQ*i@3', 'EN82bRWkp2');
+INSERT INTO PreSeq VALUES ('EN82bRWkp2', 'YWBaTfxjac', NULL);
+
+-- INSERT INTO PreSeq VALUES ('tEcJ8bvYxc', NULL, NULL);
+-- INSERT INTO PreSeq VALUES ('su=N~TMkDA', NULL, NULL);
+-- INSERT INTO PreSeq VALUES ('/Ggif2thXK', NULL, NULL);
+
+-- INSERT INTO PreSeq VALUES ('Qc82dig7wE', NULL, NULL);
+-- INSERT INTO PreSeq VALUES ('3uw`4e+K^y', NULL, NULL);
+-- INSERT INTO PreSeq VALUES ('g^Y/`tEepo', NULL, NULL);
+-- INSERT INTO PreSeq VALUES ('/YTvp#f#mX', NULL, NULL);
+
+-- INSERT info about members
+INSERT INTO Member VALUES ('4x#v''q6r~', 'Charlotte', 'Shawver','S');
+INSERT INTO Member VALUES ('cadDhZPai`', 'Allisson', 'Mack', 'A');
+
+-- at least 10 students
+INSERT INTO Member VALUES ('7CE7qk$9uT', 'Evangeline', 'Lin','S');
+INSERT INTO Member VALUES ('y^~#_sg-_g', 'Bryanna', 'Livingston','S');
+INSERT INTO Member VALUES ('R+9z2C=o/R', 'Mila', 'Ewing','S');
+
+INSERT INTO Member VALUES ('dsz/$Nzd_^', 'Harper', 'Davenport','S');
+INSERT INTO Member VALUES ('mjQtv_wKiw', 'Fredrik', 'Blommkvist','S');
+INSERT INTO Member VALUES ('QfwYr%G5X3', 'Joe', 'Goldberg','S');
+
+INSERT INTO Member VALUES ('uqj-Yz*VBn', 'Daniel', 'Focus','S');
+INSERT INTO Member VALUES ('DXoeEbvbEv', 'Angelina', 'Eriksson','S');
+INSERT INTO Member VALUES ('wmPeDD@F_n', 'Lea', 'Brödmark','S');
+INSERT INTO Member VALUES ('hfB+Uf*EV6', 'Aurora', 'Martinez','S');
+
+-- at least 5 admins
+INSERT INTO Member VALUES ('5R8+Vckzyo', 'Cory', 'Cruz', 'A');
+INSERT INTO Member VALUES ('w4uJywv=9U', 'Quinn', 'Knight', 'A');
+INSERT INTO Member VALUES ('j6+PXxg-BA', 'Alex', 'Delgado', 'A');
+INSERT INTO Member VALUES ('#AwLP%cqQ@', 'Andy', 'Summerhalt', 'A');
+INSERT INTO Member VALUES ('+Hdz7wayM~', 'Kim', 'Yoeng-Bok', 'A');
+
+-- INSERT info about the accounts for each member
+-- 15 accounts (10 student_accounts and 5 admin_accounts)
+INSERT INTO Student_account VALUES ('PAUmGqyRFa', '4x#v''q6r~', FALSE, 2, 7);
+INSERT INTO Admin_account VALUES ('hf`P+rxck=', 'cadDhZPai`', TRUE);
+
+
+-- at least 10 students
+INSERT INTO Student_account VALUES ('AZ6M#&zLcG', '7CE7qk$9uT', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('tbT~ptF$RC', 'y^~#_sg-_g', FALSE, 2, 7);
+INSERT INTO Student_account VALUES ('z#eiK5LzAn', 'R+9z2C=o/R', FALSE, 2, 7);
+
+INSERT INTO Student_account VALUES ('DQHTU#vTsd', 'dsz/$Nzd_^', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('5J+jsPfEix', 'mjQtv_wKiw', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('BTfx~3bE=r', 'QfwYr%G5X3', FALSE, 0, 7);
+
+INSERT INTO Student_account VALUES ('kRghKX3^i-', 'uqj-Yz*VBn', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('K-k_~Ty8iy', 'DXoeEbvbEv', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('v+d%mzs%+h', 'wmPeDD@F_n', FALSE, 0, 7);
+INSERT INTO Student_account VALUES ('Xp$F#aX^xn', 'hfB+Uf*EV6', FALSE, 0, 7);
+
+-- at least 5 admins
+INSERT INTO Admin_account VALUES ('2nNfxqfW^F', '5R8+Vckzyo', TRUE);
+INSERT INTO Admin_account VALUES ('Q6FAM6x4$E', 'w4uJywv=9U', TRUE);
+INSERT INTO Admin_account VALUES ('v4JrAK6vGV', 'j6+PXxg-BA', TRUE);
+INSERT INTO Admin_account VALUES ('82du4&BcXv', '#AwLP%cqQ@', TRUE);
+INSERT INTO Admin_account VALUES ('xP3U^9F+4q', '+Hdz7wayM~', TRUE);
+
+-- INSERT info about 5 returned books
+-- 5 books returned
+-- will all be available
+INSERT INTO Loan_entry VALUES ('WuHJ=oh-`P', 'N6uUWNEEx9', 'PAUmGqyRFa', '2021-09-30', '17:03', '2021-10-07', TRUE, '2021-10-07', '12:06');
+
+INSERT INTO Loan_entry VALUES ('B7A#8GwRi#', '=4-U~_R9jN', 'AZ6M#&zLcG', '2021-09-28', '12:25', '2021-10-05', TRUE, '2021-10-05', '10:46');
+INSERT INTO Loan_entry VALUES ('Cudz*8NJ-6', 'mySitpmQCm', 'AZ6M#&zLcG', '2021-09-26', '09:56', '2021-10-03', TRUE, '2021-10-03', '09:24');
+INSERT INTO Loan_entry VALUES ('ZXPknDmiv*', 'fK@5rVR$ax', 'AZ6M#&zLcG', '2021-09-29', '10:11', '2021-10-06', TRUE, '2021-10-06', '16:22');
+INSERT INTO Loan_entry VALUES ('jrURjx-WhD', 'e_dCi26_@9', 'tbT~ptF$RC', '2021-09-17', '18:12', '2021-09-24', TRUE, '2021-09-24', '19:02');
+
+-- INSERT info about 5 books that have NOT been returned
+-- 5 books not returned
+-- will all be borrowed
+INSERT INTO Loan_entry VALUES ('$-TQm2KW*Q', 'U@%Xcu+SaP', 'PAUmGqyRFa', '2021-09-29', '11:02', '2021-10-06', FALSE, NULL, NULL);
+
+INSERT INTO Loan_entry VALUES ('78wC+pfmAM', 'VUgJtCyT*-', 'tbT~ptF$RC', '2021-09-27', '13:17', '2021-10-04', FALSE, NULL, NULL);
+INSERT INTO Loan_entry VALUES ('nvtrUuXV54', 'MQdoF=UAvk', 'tbT~ptF$RC', '2021-09-25', '15:33', '2021-10-02', FALSE, NULL, NULL);
+INSERT INTO Loan_entry VALUES ('=XcV8sMCiD', 'Wg&%PhzpvZ', 'z#eiK5LzAn', '2021-09-28', '16:18', '2021-10-05', FALSE, NULL, NULL);
+INSERT INTO Loan_entry VALUES ('4_h~7gje~#', 'k9w~v+RUPv', 'z#eiK5LzAn', '2021-09-30', '09:10', '2021-10-07', FALSE, NULL, NULL);
+
+-- INSERT info about fines
+-- assuming current date today is 2021-10-08
+INSERT INTO Fine_info VALUES ('3m4h2%q7V~', 'WuHJ=oh-`P', 0, 0);
+INSERT INTO Fine_info VALUES ('*z4M5tZdTw', 'B7A#8GwRi#', 0, 0);
+INSERT INTO Fine_info VALUES ('k5Q%Az8gqu', 'Cudz*8NJ-6', 0, 0);
+INSERT INTO Fine_info VALUES ('F&r@KmoX29', 'ZXPknDmiv*', 0, 0);
+INSERT INTO Fine_info VALUES ('9vpn23Q6&P', 'jrURjx-WhD', 0, 0);
+
+INSERT INTO Fine_info VALUES ('$T$xTqzmWW', '$-TQm2KW*Q', 2, 20);
+INSERT INTO Fine_info VALUES ('ENSVF=+Ski', '78wC+pfmAM', 4, 40);
+INSERT INTO Fine_info VALUES ('DD3GerDD_2', 'nvtrUuXV54', 5, 50);
+INSERT INTO Fine_info VALUES ('jH@k3g-yyf', '=XcV8sMCiD', 3, 30);
+INSERT INTO Fine_info VALUES ('oLr@sB7bS_', '4_h~7gje~#', 1, 10);
+
+-- INSERT INTO Transaction_info VALUES ('3m4h2%q7V~', 'WuHJ=oh-`P', 0, 'swish');
+-- INSERT INTO Transaction_info VALUES ('*z4M5tZdTw', 'B7A#8GwRi#', 0, 0);
+-- INSERT INTO Transaction_info VALUES ('k5Q%Az8gqu', 'Cudz*8NJ-6', 0, 0);
+-- INSERT INTO Transaction_info VALUES ('F&r@KmoX29', 'ZXPknDmiv*', 0, 0);
+-- INSERT INTO Transaction_info VALUES ('9vpn23Q6&P', 'jrURjx-WhD', 0, 0);
+
+
+
+

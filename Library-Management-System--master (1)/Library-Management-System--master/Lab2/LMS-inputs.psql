@@ -1,0 +1,198 @@
+/*
+LMS-inputs.psql
+By: Petrus Matiros & Tomas Weldetinsae
+Modified: 2021-10-07
+*/
+
+-- NOTE: all IDs (ints) are between 100 000 - 999 999 (random)
+-- https://www.random.org/integers/?num=100&min=100000&max=999999&col=5&base=10&format=html&rnd=new)
+-- RANDOM.ORG, https://www.random.org/
+-- atmospheric noise
+
+-- INSERT at least 10 books
+INSERT INTO Book VALUES (878542, 'Cybertopia: Pulse Reactor', 5);
+INSERT INTO Book VALUES (452633, 'Cybertopia: Warpdrive', 5);
+INSERT INTO Book VALUES (114298, 'Cybertopia: New Beginnings', 5);
+
+INSERT INTO Book VALUES (114426, 'Revenge Of The Ocean', 1);
+INSERT INTO Book VALUES (507361, 'Abandoned By Eternity', 1);
+INSERT INTO Book VALUES (804586, 'Listening To The Mist', 1);
+
+INSERT INTO Book VALUES (921112, 'Deceiving The North', 1);
+INSERT INTO Book VALUES (107027, 'Pirates And Spies', 1);
+INSERT INTO Book VALUES (871001, 'Vicious feelings in bright shadows', 1);
+INSERT INTO Book VALUES (871117, 'Endora: Return of the truth', 1);
+
+-- -- INSERT 7 audio book versions of current books in the database
+-- -- atleast 5 audiobooks
+-- INSERT INTO Audio_Book VALUES ('rBt3F/^^u&', 114426, 'Revenge Of The Ocean', '11:05:15', 'MP3', 309, '64 kbps', 'Pax', 'Logario');
+-- INSERT INTO Audio_Book VALUES ('C&kEn+PLNo', 507361, 'Abandoned By Eternity', '10:49:38', 'AAC', 293, '32 kbps', 'Alexandra', 'Brahms');
+-- INSERT INTO Audio_Book VALUES ('B#-m$-6@UV', 804586, 'Listening To The Mist', '11:12:02', 'MP3', 311, '64 kbps', 'Seema', 'Zyma');
+
+-- INSERT INTO Audio_Book VALUES ('%Js7ihXcuC', 921112, 'Deceiving The North', '09:55:33', 'MP3', 267, '64 kbps', 'Liss', 'Porirsson');
+-- INSERT INTO Audio_Book VALUES ('5GJ4~@Vi~+', 107027, 'Pirates And Spies', '09:48:22', 'WAV', 265, '96 kbps', 'Agnia', 'Galli');
+-- INSERT INTO Audio_Book VALUES ('T79o~*Hanh', 871001, 'Vicious feelings in bright shadows', '12:00:17', 'MP3', 336, '64 kbps', 'Amanda', 'Toussaint');
+-- INSERT INTO Audio_Book VALUES ('-^im^vzEiY', 871117, 'Endora: Return of the truth', '08:33:56', 'MP3', 233, '64 kbps', 'David', 'Fischer');
+
+-- INSERT 5 copies of the Cypertopia trilogy and 1 copy of the other books
+INSERT INTO Book_copy VALUES (639595, 878542, 'Bibliolandia AB', '2015-05-25', 'English', '1st edition', 'available', 'new', '978-5-1757-2807-2');
+INSERT INTO Book_copy VALUES (303486, 878542, 'Bibliolandia AB', '2015-05-25', 'English', '1st edition', 'available', 'new', '978-5-1757-2807-2');
+INSERT INTO Book_copy VALUES (681936, 878542, 'Bibliolandia AB', '2015-05-25', 'English', '1st edition', 'available', 'new', '978-5-1757-2807-2');
+INSERT INTO Book_copy VALUES (400934, 878542, 'Bibliolandia AB', '2015-05-25', 'English', '1st edition', 'available', 'new', '978-5-1757-2807-2');
+INSERT INTO Book_copy VALUES (422653, 878542, 'Bibliolandia AB', '2015-05-25', 'English', '1st edition', 'available', 'new', '978-5-1757-2807-2');
+
+INSERT INTO Book_copy VALUES (151504, 452633, 'Bibliolandia AB', '2017-03-17', 'English', '1st edition', 'borrowed', 'new', '978-8-6275-7860-7');
+INSERT INTO Book_copy VALUES (413321, 452633, 'Bibliolandia AB', '2017-03-17', 'English', '1st edition', 'available', 'new', '978-8-6275-7860-7');
+INSERT INTO Book_copy VALUES (206620, 452633, 'Bibliolandia AB', '2017-03-17', 'English', '1st edition', 'available', 'new', '978-8-6275-7860-7');
+INSERT INTO Book_copy VALUES (971391, 452633, 'Bibliolandia AB', '2017-03-17', 'English', '1st edition', 'available', 'new', '978-8-6275-7860-7');
+INSERT INTO Book_copy VALUES (380606, 452633, 'Bibliolandia AB', '2017-03-17', 'English', '1st edition', 'available', 'new', '978-8-6275-7860-7');
+
+INSERT INTO Book_copy VALUES (474469, 114298, 'Bibliolandia AB', '2021-02-11', 'English', '1st edition', 'borrowed', 'new', '978-1-7288-7443-2');
+INSERT INTO Book_copy VALUES (163600, 114298, 'Bibliolandia AB', '2021-02-11', 'English', '1st edition', 'borrowed', 'new', '978-1-7288-7443-2');
+INSERT INTO Book_copy VALUES (571681, 114298, 'Bibliolandia AB', '2021-02-11', 'English', '1st edition', 'borrowed', 'new', '978-1-7288-7443-2');
+INSERT INTO Book_copy VALUES (466062, 114298, 'Bibliolandia AB', '2021-02-11', 'English', '1st edition', 'borrowed', 'new', '978-1-7288-7443-2');
+INSERT INTO Book_copy VALUES (909811, 114298, 'Bibliolandia AB', '2021-02-11', 'English', '1st edition', 'available', 'new', '978-1-7288-7443-2');
+
+INSERT INTO Book_copy VALUES (479733, 114426, 'Bertelsmann', '2017-06-20', 'English', '1st edition', 'available', 'new', '978-8-7815-6087-6');
+INSERT INTO Book_copy VALUES (131279, 507361, 'HarperCollins', '2014-04-12', 'English', '1st edition', 'available', 'new', '978-0-3363-0677-9');
+INSERT INTO Book_copy VALUES (891444, 804586, 'Thomson Reuters', '2016-03-02', 'English', '1st edition', 'available', 'new', '978-0-0115-8007-4');
+
+INSERT INTO Book_copy VALUES (351060, 921112, 'Luna Press', '2018-04-08', 'English', '1st edition', 'available', 'new', '978-2-7586-0068-8');
+INSERT INTO Book_copy VALUES (153119, 107027, 'Fireside Fiction Company', '2019-01-10', 'English', '1st edition', 'available', 'new', '978-1-8818-7510-9');
+INSERT INTO Book_copy VALUES (818351, 871001, 'Falstaff Books', '2011-03-24', 'English', '1st edition', 'available', 'new', '978-5-7269-1411-4');
+INSERT INTO Book_copy VALUES (514437, 871117, 'Rosarium Publishing', '2020-02-11', 'English', '1st edition', 'available', 'new', '978-0-5885-1548-6');
+
+-- INSERT the author for all the books
+INSERT INTO Book_author VALUES (878542, 'Natalia', 'Page');
+INSERT INTO Book_author VALUES (452633, 'Natalia', 'Page');
+INSERT INTO Book_author VALUES (114298, 'Natalia', 'Page');
+
+INSERT INTO Book_author VALUES (114426, 'Kristin', 'Conner');
+INSERT INTO Book_author VALUES (507361, 'Ricky', 'Bennett');
+INSERT INTO Book_author VALUES (804586, 'Orlando', 'Wood');
+
+INSERT INTO Book_author VALUES (921112, 'Misty', 'Alfors');
+INSERT INTO Book_author VALUES (107027, 'Teresa', 'Bergdahl');
+INSERT INTO Book_author VALUES (871001, 'Masayoshi', 'Sakkutora');
+INSERT INTO Book_author VALUES (871117, 'Louise', 'Blanchet');
+
+-- INSERT the genre for all the books
+INSERT INTO Book_genre VALUES (878542, 'Science fiction');
+INSERT INTO Book_genre VALUES (452633, 'Science fiction');
+INSERT INTO Book_genre VALUES (114298, 'Science fiction');
+
+INSERT INTO Book_genre VALUES (114426, 'Fantasy');
+INSERT INTO Book_genre VALUES (507361, 'Fantasy');
+INSERT INTO Book_genre VALUES (804586, 'Fantasy');
+
+INSERT INTO Book_genre VALUES (921112, 'Fantasy');
+INSERT INTO Book_genre VALUES (107027, 'Fantasy');
+INSERT INTO Book_genre VALUES (871001, 'Fantasy');
+INSERT INTO Book_genre VALUES (871117, 'Fantasy');
+
+
+-- INSERT the info about prequels and sequels for all the books
+INSERT INTO PreSeq VALUES (878542, NULL, 452633);
+INSERT INTO PreSeq VALUES (452633, 878542, 114298);
+INSERT INTO PreSeq VALUES (114298, 452633, NULL);
+
+INSERT INTO PreSeq VALUES (114426, NULL, NULL);
+INSERT INTO PreSeq VALUES (507361, NULL, NULL);
+INSERT INTO PreSeq VALUES (804586, NULL, NULL);
+
+INSERT INTO PreSeq VALUES (921112, NULL, NULL);
+INSERT INTO PreSeq VALUES (107027, NULL, NULL);
+INSERT INTO PreSeq VALUES (871001, NULL, NULL);
+INSERT INTO PreSeq VALUES (871117, NULL, NULL);
+
+-- INSERT info about members
+INSERT INTO Member VALUES (192966, 'Charlotte', 'Shawver', 'S');
+INSERT INTO Member VALUES (568710, 'Allisson', 'Mack', 'A');
+
+-- at least 10 students
+INSERT INTO Member VALUES (540931, 'Evangeline', 'Lin', 'S');
+INSERT INTO Member VALUES (540139, 'Bryanna', 'Livingston', 'S');
+INSERT INTO Member VALUES (356652, 'Mila', 'Ewing', 'S');
+
+INSERT INTO Member VALUES (421472, 'Harper', 'Davenport', 'S');
+INSERT INTO Member VALUES (921216, 'Fredrik', 'Blommkvist', 'S');
+INSERT INTO Member VALUES (521365, 'Joe', 'Goldberg', 'S');
+
+INSERT INTO Member VALUES (584998, 'Daniel', 'Focus', 'S');
+INSERT INTO Member VALUES (753571, 'Angelina', 'Eriksson', 'S');
+INSERT INTO Member VALUES (926415, 'Lea', 'Brödmark', 'S');
+INSERT INTO Member VALUES (853299, 'Aurora', 'Martinez', 'S');
+
+-- at least 5 admins
+INSERT INTO Member VALUES (134314, 'Cory', 'Cruz', 'A');
+INSERT INTO Member VALUES (185270, 'Quinn', 'Knight', 'A');
+INSERT INTO Member VALUES (456928, 'Alex', 'Delgado', 'A');
+INSERT INTO Member VALUES (573770, 'Andy', 'Summerhalt', 'A');
+INSERT INTO Member VALUES (642504, 'Kim', 'Yoeng-Bok', 'A');
+
+
+-- INSERT info about the accounts for each member
+-- 15 accounts (10 student_accounts and 5 admin_accounts)
+INSERT INTO Student_account VALUES (983455, 192966, 'chasha@kth.se', 'Höjdstigen 63', 'Computer Science', FALSE, 2, 7);
+INSERT INTO Admin_account VALUES (634335, 568710, 'allmac@kth.se', 'Näsåkersv 120', '+46704890129', 'Department of Architecture', TRUE);
+
+
+-- at least 10 students
+INSERT INTO Student_account VALUES (556091, 540931, 'evalin@kth.se', 'Fällberg 56', 'Chemistry', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (119563, 540139, 'bryliv@kth.se', 'Sjötullsgatan 129', 'Mathematics', FALSE, 2, 7);
+INSERT INTO Student_account VALUES (124265, 356652, 'milewi@kth.se', 'Knektv 100', 'Mathematics', FALSE, 2, 7);
+
+INSERT INTO Student_account VALUES (897932, 421472, 'hardav@kth.se', 'Sörbylund 73', 'Architecture', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (687156, 921216, 'freblo@kth.se', 'Östbygatan 122', 'Biotechnology', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (373937, 521365, 'joegol@kth.se', 'Sandviken 76', 'Biotechnology', FALSE, 0, 7);
+
+INSERT INTO Student_account VALUES (955438, 584998, 'danfoc@kth.se', 'Ängsgatan 113', 'Biotechnology', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (519364, 753571, 'angeri@kth.se', 'Törneby 93', 'Computer Science', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (556221, 926415, 'leabro@kth.se', 'Karlsängen 41', 'Computer Science', FALSE, 0, 7);
+INSERT INTO Student_account VALUES (291126, 853299, 'aurmar@kth.se', 'Skärpinge 121', 'Computer Science', FALSE, 0, 7);
+
+-- at least 5 admins
+INSERT INTO Admin_account VALUES (113903, 134314, 'corcru@kth.se', 'Syrengården 50', '+46704877123', 'Department of Mathematics', TRUE);
+INSERT INTO Admin_account VALUES (211436, 185270, 'quikni@kth.se', 'Tjörneröd 65', '+46702290120', 'Science And Engineering', TRUE);
+INSERT INTO Admin_account VALUES (324719, 456928, 'aledel@kth.se', 'Björkvägen 77', '+46704866177', 'Department of Biology', TRUE);
+INSERT INTO Admin_account VALUES (361395, 573770, 'andsum@kth.se', 'Näsåkersv 76', '+46704880128', 'Science And Engineering', TRUE);
+INSERT INTO Admin_account VALUES (921769, 642504, 'kimyoe@kth.se', 'Dadelvägen 96', '+46704811195', 'Department of Chemistry', TRUE);
+
+-- INSERT info about 5 returned books
+-- 5 books returned
+-- will all be available
+INSERT INTO Loan_entry VALUES (498259, 639595, 983455, '2021-09-30', '17:03', '2021-10-07', TRUE, 0, '2021-10-07', '12:06');
+
+INSERT INTO Loan_entry VALUES (278699, 413321, 556091, '2021-09-28', '12:25', '2021-10-05', TRUE, 0, '2021-10-05', '10:46');
+INSERT INTO Loan_entry VALUES (727744, 206620, 556091, '2021-09-26', '09:56', '2021-10-03', TRUE, 0, '2021-10-03', '09:24');
+INSERT INTO Loan_entry VALUES (771358, 971391, 556091, '2021-09-29', '10:11', '2021-10-06', TRUE, 0, '2021-10-06', '16:22');
+INSERT INTO Loan_entry VALUES (838388, 380606, 119563, '2021-09-17', '18:12', '2021-09-24', TRUE, 0, '2021-09-24', '19:02');
+
+-- INSERT info about 5 books that have NOT been returned
+-- 5 books not returned
+-- will all be borrowed
+INSERT INTO Loan_entry VALUES (320731, 151504, 983455, '2021-09-29', '11:02', '2021-10-06', FALSE, 0, NULL, NULL);
+
+INSERT INTO Loan_entry VALUES (948383, 474469, 119563, '2021-09-27', '13:17', '2021-10-04', TRUE, 0, '2021-10-08', '13:22');
+INSERT INTO Loan_entry VALUES (877852, 163600, 119563, '2021-09-25', '15:33', '2021-10-02', TRUE, 0, '2021-10-07', '17:11');
+INSERT INTO Loan_entry VALUES (240559, 571681, 124265, '2021-09-28', '16:18', '2021-10-05', TRUE, 0, '2021-10-08', '20:09');
+INSERT INTO Loan_entry VALUES (245682, 466062, 124265, '2021-09-30', '09:10', '2021-10-07', TRUE, 0, '2021-10-08', '12:10');
+
+-- INSERT info about 6 fines (4 of which have been payed)
+INSERT INTO Fine_info VALUES (568396, 320731, 2, 20);
+INSERT INTO Fine_info VALUES (101525, 948383, 4, 40);
+INSERT INTO Fine_info VALUES (950734, 877852, 5, 50);
+INSERT INTO Fine_info VALUES (388216, 240559, 3, 30);
+INSERT INTO Fine_info VALUES (428392, 245682, 1, 10);
+
+-- INSERT info about 4 transactions
+INSERT INTO Transaction_info VALUES (497834, 101525, '2021-10-08', 'klarna');
+INSERT INTO Transaction_info VALUES (424557, 950734, '2021-10-07', 'cash');
+INSERT INTO Transaction_info VALUES (499332, 388216, '2021-10-08', 'card');
+INSERT INTO Transaction_info VALUES (197820, 428392, '2021-10-08', 'swish');
+
+
+
+
+
+

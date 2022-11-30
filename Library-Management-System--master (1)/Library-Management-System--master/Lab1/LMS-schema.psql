@@ -1,0 +1,253 @@
+/*
+LMS-schema.psql
+By: Petrus Matiros & Tomas Weldetinsae
+Modified: 2021-10-07
+*/
+
+
+-- add publisher, language and edition to book_copy, remove the tables
+-- add constraints
+-- make all IDs to ints
+-- move ISBN to Book_copy
+-- fine_info - only books that have past their return date
+-- check so that all the INSERTs are correct (they are broken)
+-- book_copy
+-- remove loanID from Loan_entry
+-- fine_info loanID --> student_accountID
+-- Admin_account "maintains" Books or book_copies???
+
+/*
+* Book schema
+* To store info about unique books
+*
+* Constraints:
+* a book can only have max 5 physical copies
+* a book shouldn't have 0 physical copies
+*/
+-- to add: date of publication
+CREATE TABLE Book (
+  bookID varchar(255),
+  title varchar NOT NULL,
+  num_of_copies integer,
+  ISBN varchar(17),
+  PRIMARY KEY (bookID),
+  CHECK (num_of_copies <= 5),
+  CHECK (num_of_copies >= 0)
+);
+
+CREATE TYPE file_format AS ENUM (
+  'AAC', 'MP3', 'WAV', 'FLAC'
+);
+
+CREATE TYPE audio_bitrate AS ENUM (
+  '32 kbps', '64 kbps', '96 kbps', '128 kbps'
+);
+
+/*
+* Audio_Book schema
+* To store info about audiobook versions of the books in the database
+*/
+-- should this be apart of the case study?
+CREATE TABLE Audio_Book (
+  audioBookID varchar(255),
+  bookID varchar(255),
+  title varchar NOT NULL,
+  length interval NOT NULL,
+  file_type file_format NOT NULL,
+  file_size_MB int NOT NULL,
+  audio_quality audio_bitrate NOT NULL,
+  narrator_firstname varchar NOT NULL,
+  narrator_lastname varchar NOT NULL,
+  PRIMARY KEY (audioBookID),
+  FOREIGN KEY (bookID) REFERENCES Book
+);
+
+/*
+* Book_copy schema
+* To store info about book copies (physical copies) of the books in the database
+*/
+-- to add: damaged information; missing_pages, water_damage, burnt, torn, damage_description
+-- add it in seperate schema?
+CREATE TABLE Book_copy (
+  copyID varchar(255),
+  bookID varchar(255),
+  status varchar NOT NULL,
+  health_status varchar NOT NULL,
+  PRIMARY KEY (copyID),
+  FOREIGN KEY (bookID) REFERENCES Book
+);
+
+/*
+* Book_author schema
+* To store info about the authors of the books in the database
+*/
+CREATE TABLE Book_author (
+  bookID varchar(255),
+  author_firstname varchar NOT NULL,
+  author_lastname varchar NOT NULL,
+  PRIMARY KEY (bookID)
+);
+
+/*
+* Book_genre schema
+* To store info about the genres of the books in the database
+*/
+CREATE TABLE Book_genre (
+  bookID varchar(255),
+  genre varchar,
+  PRIMARY KEY (bookID, genre)
+);
+
+/*
+* Book_publisher schema
+* To store info about the publishers of the books in the database
+*/
+CREATE TABLE Book_publisher (
+  bookID varchar(255),
+  publisher varchar,
+  PRIMARY KEY (bookID, publisher)
+);
+
+/*
+* Book_edition schema
+* To store info about the editions of the books in the database
+*/
+CREATE TABLE Book_edition (
+  bookID varchar(255),
+  edition varchar,
+  PRIMARY KEY (bookID, edition)
+);
+
+/*
+* Book_lang schema
+* To store info about the language of the books in the database
+*/
+CREATE TABLE Book_lang (
+  bookID varchar(255),
+  lang varchar,
+  PRIMARY KEY (bookID, lang)
+);
+
+/*
+* PreSeq schema
+* To store info about the prequels and sequels of the books in the database
+*/
+CREATE TABLE PreSeq (
+  bookID varchar(255),
+  prequelID varchar(255),
+  sequelID varchar(255),
+  PRIMARY KEY (bookID),
+  FOREIGN KEY (prequelID) REFERENCES Book,
+  FOREIGN KEY (sequelID) REFERENCES Book
+);
+
+/*
+* Member schema
+* To store info about the members that can use/access the database
+*/
+CREATE TABLE Member (
+  kthID varchar(255),
+  first_name varchar NOT NULL,
+  last_name varchar NOT NULL,
+  member_role char NOT NULL,
+  PRIMARY KEY (kthID)
+);
+
+/*
+* Student_account schema
+* To store info about the accounts that are interacted with in the database
+*
+* Constraints:
+* an account (student, admin_privileges is false) can only have 4 books borrowed at the same time (slots)
+* an account (student, admin_privileges is false) can only borrow a book for 7 days
+*/
+-- add constraint (students), if fine is not paid --> cannot borrow
+-- add constraint (students) an account (student, admin_privileges is false) can only borrow the same book 6 times
+CREATE TABLE Student_account (
+  student_accountID varchar(255),
+  kthID varchar(255),
+  -- students need: email, programme, adress
+  email varchar,
+  programme varchar,
+  address varchar,
+  admin_privileges boolean NOT NULL,
+  borrow_slots integer,
+  limit_duration_cap integer,
+  PRIMARY KEY (student_accountID),
+  FOREIGN KEY (kthID) REFERENCES Member,
+  CHECK (borrow_slots <= 4),
+  CHECK (limit_duration_cap <= 7),
+  CHECK (limit_duration_cap >= 0)
+  
+);
+
+/*
+* Admin_account schema
+* To store info about the accounts that are interacted with in the database
+*/
+CREATE TABLE Admin_account (
+  admin_accountID varchar(255),
+  kthID varchar(255),
+  -- admins need: email, phone number, department, address
+  email varchar,
+  phone_number int,
+  department varchar,
+  address varchar,
+  admin_privileges boolean NOT NULL,
+  PRIMARY KEY (admin_accountID),
+  FOREIGN KEY (kthID) REFERENCES Member
+);
+
+/*
+* Loan_entry schema
+* To store info about the loan entries that are done in the database
+*/
+CREATE TABLE Loan_entry (
+  loanID varchar(255),
+  copyID varchar(255),
+  student_accountID varchar(255),
+  date_of_loan date NOT NULL,
+  time_of_loan time NOT NULL,
+  expire_date date NOT NULL,
+  is_returned boolean NOT NULL,
+  date_of_return date,
+  time_of_return time,
+  PRIMARY KEY (loanID),
+  FOREIGN KEY (copyID) REFERENCES Book_copy,
+  FOREIGN KEY (student_accountID) REFERENCES Student_account
+);
+
+/*
+* Fine_info schema
+* To store info about the fines that are processed in the database
+*
+* Constraints:
+* the fine_amount cannot be less than 0
+* the number_of_days_late cannot be less than 0
+*/
+CREATE TABLE Fine_info (
+  fineID varchar(255),
+  loanID varchar(255),
+  number_of_days_late integer NOT NULL,
+  fine_amount integer NOT NULL,
+  PRIMARY KEY (fineID),
+  FOREIGN KEY (loanID) REFERENCES Loan_entry,
+  CHECK (fine_amount >= 0),
+  CHECK (number_of_days_late >= 0)
+);
+
+
+CREATE TYPE payment_method AS ENUM (
+  'cash', 'card', 'swish', 'klarna'
+);
+
+CREATE TABLE Transaction_info (
+  transactionID varchar(255),
+  fineID varchar(255),
+  date_of_payment date,
+  method_of_payment payment_method NOT NULL,
+  PRIMARY KEY (transactionID),
+  FOREIGN KEY (fineID) REFERENCES Fine_info
+);
+
+
